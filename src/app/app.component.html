@@ -1,0 +1,138 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z4">
+      <mat-toolbar-row>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <span>{{title}}</span>
+
+        <span class="toolbar-spacer"></span>
+
+        <button mat-icon-button id="theme-selector" [mat-menu-trigger-for]="themeMenu"
+                i18n-matTooltip="@@Select-a-theme" matTooltip="Select a theme!"
+                tabindex="-1">
+          <mat-icon class="auto-flip">format_color_fill</mat-icon>
+        </button>
+
+        <mat-menu #themeMenu="matMenu">
+          <mat-checkbox [checked]="isThemeDark"
+                        (click)="$event.stopPropagation()"
+                        (change)="toggleDarkness()"
+                        class="mat-menu-item theme-selector-is-dark" i18n="@@Dark">Dark
+          </mat-checkbox>
+
+          <mat-grid-list cols="2" class="theme-selectors-container">
+            <mat-grid-tile *ngFor="let theme of themes">
+              <button mat-button class="theme-selector"
+                      (click)="$event.stopPropagation(); setTheme(theme)">
+                <div [attr.class]="theme + ' theme-primary center'">
+                  <div [attr.class]="theme + ' theme-accent'"></div>
+                  <div [attr.class]="theme + ' theme-warn'"></div>
+                  <mat-icon *ngIf="activeTheme===theme" class="center theme-check">check</mat-icon>
+                </div>
+              </button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-menu>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="sample-elements themed-element" style="padding:8px">
+      regular &lt;div&gt; | fg: accent, bg: primary
+    </div>
+
+    <form class="example-form">
+      <mat-checkbox class="sample-elements" [checked]="true">Material check-box</mat-checkbox>
+
+      <mat-slide-toggle class="sample-elements" checked>Slide me!</mat-slide-toggle>
+
+      <mat-slider class="sample-elements"
+                  thumbLabel
+                  [displayWith]="formatLabel"
+                  min="1"
+                  value="50"
+                  max="100"></mat-slider>
+      <br>
+
+      <button mat-button class="sample-elements">Simple button</button>
+      <button mat-raised-button class="sample-elements">Raised button</button>
+      <button mat-fab class="sample-elements">FAB</button>
+      <br>
+
+      <mat-radio-group aria-label="Select an option" class="sample-elements" value="1">
+        <mat-radio-button value="1">Option 1</mat-radio-button>
+        <mat-radio-button value="2">Option 2</mat-radio-button>
+      </mat-radio-group>
+      <br>
+
+      <mat-form-field class="example-full-width sample-elements">
+        <input matInput placeholder="Email" value="email@example.com"
+               [formControl]="emailFormControl"
+               [errorStateMatcher]="matcher">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="sample-elements">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 sample-elements" style="width:95%">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight</th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-sidenav-content>
+</mat-sidenav-container>
