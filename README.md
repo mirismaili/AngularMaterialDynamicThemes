@@ -9,17 +9,30 @@
 
 **Angular-Material-Dynamic-Themes Scaffold**
 
-A sample for [**angular-material-dynamic-themes**](https://npmjs.com/package/angular-material-dynamic-themes) library
+A sample for [**angular-material-dynamic-themes**](https://github.com/mirismaili/angular-material-dynamic-themes#readme) library
 
 ***
 
-![Video](https://raw.githubusercontent.com/mirismaili/AngularMaterialDynamicThemes/master/res/preview.gif "Video")
+![Video](https://raw.githubusercontent.com/mirismaili/AngularMaterialDynamicThemes/572b07011fd8f00c9444ada23be3f6105ea66901/res/preview.gif "Video")
 
+<sup>*Thank [ScreenToGif](https://www.screentogif.com/)*</sup>
 
-**Live application** (*thank StackBlitz*)**:**
+***
 
-https://wmaivxjq.github.stackblitz.io
+- **Live application:**
 
-**Live project** (*thank StackBlitz*)**:**
+    https://wmaivxjq.github.stackblitz.io
 
-https://stackblitz.com/github/mirismaili/AngularMaterialDynamicThemes
+- **Live project:**
+
+    https://stackblitz.com/github/mirismaili/AngularMaterialDynamicThemes
+
+<sup>Thank [StackBlitz](https://stackblitz.com/)</sup>
+
+- **Documentation:**
+
+    https://github.com/mirismaili/angular-material-dynamic-themes#readme
+
+***
+
+***CAVEAT:** Adding 8 dynamic material themes to the app (4 lights + 4 darks) increased the size of built styles.css by ~420 kB (compared with **one static material theme**).*
