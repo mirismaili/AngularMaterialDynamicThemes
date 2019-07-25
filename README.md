@@ -19,15 +19,11 @@ A sample for [**angular-material-dynamic-themes**](https://github.com/mirismaili
 
 ***
 
-- **Live application:**
-
-    https://wmaivxjq.github.stackblitz.io
-
 - **Live project:**
 
     https://stackblitz.com/github/mirismaili/AngularMaterialDynamicThemes
 
-<sup>Thank [StackBlitz](https://stackblitz.com/)</sup>
+<sup>*Thank [StackBlitz](https://stackblitz.com/)*</sup>
 
 - **Documentation:**
 
