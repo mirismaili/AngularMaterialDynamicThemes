@@ -29,6 +29,11 @@ A sample for [**angular-material-dynamic-themes**](https://github.com/mirismaili
 
     https://github.com/mirismaili/angular-material-dynamic-themes#readme
 
+- **Step-by-step instruction:**
+
+    [https://medium.com/@s.m.mirismaili/angular-material-dynamic-themes-compatible-with-angular-7-8-e642ad3c09f4](https://medium.com/@s.m.mirismaili/angular-material-dynamic-themes-compatible-with-angular-7-8-e642ad3c09f4)
+
+
 ***
 
 ***CAVEAT:** Adding 8 dynamic material themes to the app (4 lights + 4 darks) increased the size of built styles.css by ~420 kB (compared with **one static material theme**).*
