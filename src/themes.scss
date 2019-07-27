@@ -102,6 +102,6 @@ $themes-map: (
   }
 }
 
-// Import the library and do the job:
+// Import the module and do the job:
 @import '~angular-material-dynamic-themes/themes-core';
 @include make-stylesheets($themes-map);

@@ -24,7 +24,9 @@
     "dynamic-theme",
     "dynamic-themes",
     "runtime-theme-change",
-    "runtime-change-themes"
+    "runtime-change-themes",
+    "sass",
+    "scss"
   ],
   "author": "S. M. Mir-Ismaili <s.m.mirismaili@gmail.com>",
   "license": "MIT",
