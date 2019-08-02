@@ -46,4 +46,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/res/preview.stg
+/res/*.stg
