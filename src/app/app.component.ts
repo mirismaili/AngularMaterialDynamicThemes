@@ -1,8 +1,6 @@
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout'
 import {Component, HostBinding} from '@angular/core'
 import {OverlayContainer} from '@angular/cdk/overlay'
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
 import {Observable} from 'rxjs'
 import {map} from 'rxjs/operators'
 
@@ -20,18 +18,16 @@ const THEME_DARKNESS_SUFFIX = `-dark`;
 })
 export class AppComponent {
   title = 'AngularMaterialDynamicThemes'
+  
+  @HostBinding('class') activeThemeCssClass: string
+  isThemeDark = false
+  activeTheme: string
   themes: string[] = [
     'deeppurple-amber',
     'indigo-pink',
     'pink-bluegrey',
     'purple-green',
   ]
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ])
-  
-  matcher = new MyErrorStateMatcher()
   
   // For navigation (sidenav/toolbar). Isn't related to dynamic-theme-switching:
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -44,17 +40,13 @@ export class AppComponent {
     private overlayContainer: OverlayContainer,
   ) {
     // Set default theme here:
-    this.setTheme('deeppurple-amber', false)
+    this.setActiveTheme('deeppurple-amber', false)
   }
   
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol']
   dataSource = ELEMENT_DATA
   
-  @HostBinding('class') activeThemeCssClass: string
-  isThemeDark = false
-  activeTheme: string
-  
-  setTheme(theme: string, darkness: boolean = null) {
+  setActiveTheme(theme: string, darkness: boolean = null) {
     if (darkness === null)
       darkness = this.isThemeDark
     else if (this.isThemeDark === darkness) {
@@ -76,7 +68,7 @@ export class AppComponent {
   }
   
   toggleDarkness() {
-    this.setTheme(this.activeTheme, !this.isThemeDark)
+    this.setActiveTheme(this.activeTheme, !this.isThemeDark)
   }
 }
 
@@ -92,11 +84,3 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
 ]
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted))
-  }
-}
